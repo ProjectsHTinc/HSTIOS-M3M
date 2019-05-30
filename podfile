@@ -1,0 +1,10 @@
+ platform :ios, '10.0'
+   use_frameworks!
+
+   target 'M3_Mobilizer' do
+   
+   pod 'SideMenu'
+   pod 'YouTubePlayer'
+   pod 'Alamofire', '~> 4.7'
+   pod 'SDWebImage', '~> 4.0'
+   end
