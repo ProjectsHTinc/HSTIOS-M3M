@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +20,7 @@
         <!--Center Detail-->
         <scene sceneID="jlr-9q-ckf">
             <objects>
-                <viewController storyboardIdentifier="centerDetail" id="SHC-2D-9cc" customClass="CenterDetail" customModule="M3_Mobilizer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="centerDetail" modalPresentationStyle="fullScreen" id="SHC-2D-9cc" customClass="CenterDetail" customModule="M3_Mobilizer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qkv-xU-240">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,37 +40,37 @@
                                             </label>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CvU-Ds-eO8">
                                                 <rect key="frame" x="-2" y="0.0" width="380" height="115"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Center Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6B0-us-Dzc">
                                                         <rect key="frame" x="14" y="69" width="356" height="34"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.2343313095" green="0.1793193136" blue="0.49214920340000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" name="appBaseColor"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Descripition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbW-FM-LF5">
                                                 <rect key="frame" x="19" y="125" width="214" height="28"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bg6-ud-k2Q">
                                                 <rect key="frame" x="16" y="162" width="345" height="182"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Acx-g9-WMP">
                                                 <rect key="frame" x="53" y="356" width="124" height="48"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.2343313095" green="0.1793193136" blue="0.49214920340000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" name="appBaseColor"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <state key="normal" title="Photos">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -83,7 +82,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0LJ-ip-drs">
                                                 <rect key="frame" x="197" y="356" width="124" height="48"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.2343313095" green="0.1793193136" blue="0.49214920340000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" name="appBaseColor"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <state key="normal" title="Videos">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -96,7 +95,7 @@
                                                 <rect key="frame" x="19" y="423" width="214" height="28"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Ji-Vb-I8N">
@@ -129,7 +128,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" red="0.23529411759999999" green="0.18039215689999999" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="backgroundColor" name="appBaseColor"/>
                                                                 </view>
                                                             </subviews>
                                                         </view>
@@ -147,45 +146,21 @@
                                                 <rect key="frame" x="20" y="568" width="214" height="28"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Nwx-lH-UzE">
-                                                <rect key="frame" x="17" y="607" width="345" height="79"/>
+                                                <rect key="frame" x="17" y="607" width="345" height="141"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAn-8o-Sje">
-                                                <rect key="frame" x="50" y="696" width="124" height="48"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.2343313095" green="0.1793193136" blue="0.49214920340000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <state key="normal" title="Photos">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="storiesPhoto:" destination="SHC-2D-9cc" eventType="touchUpInside" id="yBR-CP-opc"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBK-tq-pGB">
-                                                <rect key="frame" x="194" y="696" width="124" height="48"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.2343313095" green="0.1793193136" blue="0.49214920340000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <state key="normal" title="Videos">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="storiesVideo:" destination="SHC-2D-9cc" eventType="touchUpInside" id="1cP-Wg-X27"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFm-Dl-iWE">
                                                 <rect key="frame" x="19" y="756" width="333" height="48"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.2343313095" green="0.1793193136" blue="0.49214920340000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" name="appBaseColor"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <state key="normal" title="Trades">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -248,7 +223,7 @@
         <!--Side Menu Navigation Controller-->
         <scene sceneID="NWQ-2K-Jdt">
             <objects>
-                <navigationController storyboardIdentifier="LeftMenuNavigationController" navigationBarHidden="YES" id="zAs-Xx-Ucb" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LeftMenuNavigationController" modalPresentationStyle="fullScreen" navigationBarHidden="YES" id="zAs-Xx-Ucb" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="znH-ub-iaf">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -266,7 +241,7 @@
         <!--Gallery List-->
         <scene sceneID="euF-wR-HaU">
             <objects>
-                <viewController storyboardIdentifier="galleryList" id="eMp-4Z-ksg" customClass="GalleryList" customModule="M3_Mobilizer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="galleryList" modalPresentationStyle="fullScreen" id="eMp-4Z-ksg" customClass="GalleryList" customModule="M3_Mobilizer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wlf-el-Ar6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -327,7 +302,7 @@
         <!--Video List-->
         <scene sceneID="ghw-rH-EW7">
             <objects>
-                <viewController storyboardIdentifier="videoList" id="GAG-lW-wzO" customClass="VideoList" customModule="M3_Mobilizer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="videoList" modalPresentationStyle="fullScreen" id="GAG-lW-wzO" customClass="VideoList" customModule="M3_Mobilizer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="98Z-Pd-4bE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -396,4 +371,9 @@
             <point key="canvasLocation" x="2600.8000000000002" y="-282.26600985221677"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="appBaseColor">
+            <color red="0.8784313725490196" green="0.13725490196078433" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

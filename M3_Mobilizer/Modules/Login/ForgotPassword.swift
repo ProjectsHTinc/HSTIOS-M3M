@@ -9,21 +9,18 @@
 import UIKit
 import Alamofire
 import SideMenu
+import ReachabilitySwift
 
 class ForgotPassword: UIViewController,UITextFieldDelegate
 {
-    
     var activeField: UITextField?
-    
     var lastOffset: CGPoint!
-    
     var keyboardHeight: CGFloat!
-    
     var oldpswrdeyeisClicked = true
-
     var newpswrdeyeisClicked = true
-
-
+    let reachability = Reachability()
+    var networkConnectionFrom = String()
+    
     @IBAction func backAction(_ sender: Any)
     {
         let storyboard = UIStoryboard(name: "M3_Login", bundle: nil)
@@ -32,6 +29,7 @@ class ForgotPassword: UIViewController,UITextFieldDelegate
     }
     
     @IBOutlet var newPawrdOutlet: UIButton!
+    @IBOutlet weak var confirmPassword: UITextField!
     
     @IBAction func newpaswrdButton(_ sender: Any)
     {
@@ -50,8 +48,8 @@ class ForgotPassword: UIViewController,UITextFieldDelegate
             newpswrdeyeisClicked = true
         }
     }
-    @IBOutlet var oldPaswrdEyeOulet: UIButton!
     
+    @IBOutlet var oldPaswrdEyeOulet: UIButton!
     @IBAction func oldPawwordEyeButton(_ sender: Any)
     {
         if (oldpswrdeyeisClicked == true)
@@ -69,16 +67,15 @@ class ForgotPassword: UIViewController,UITextFieldDelegate
             oldpswrdeyeisClicked = true
         }
     }
+    
     @IBOutlet var newPassword: UITextField!
-    
     @IBOutlet var oldPassword: UITextField!
-    
     @IBOutlet weak var submitOutlet: UIButton!
-    
     @IBAction func submitAction(_ sender: Any)
     {
         let name = oldPassword.text
         let password = newPassword.text
+        let confirmPassword = self.confirmPassword.text
         if (name!.isEmpty)
         {
             let alertController = UIAlertController(title: "M3", message: "Username is empty", preferredStyle: .alert)
@@ -89,18 +86,58 @@ class ForgotPassword: UIViewController,UITextFieldDelegate
             self.present(alertController, animated: true, completion: nil)
             
         }
+        else if (name!.count < 6)
+        {
+            
+        }
         else if(password!.isEmpty)
         {
-            let alertController = UIAlertController(title: "M3", message: "Password is empty", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "M3", message: "Old Password cannot be empty", preferredStyle: .alert)
             let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
                 print("You've pressed default");
             }
             alertController.addAction(action1)
             self.present(alertController, animated: true, completion: nil)
         }
-        else if name == password
+        else if(password!.count < 6)
         {
-            let alertController = UIAlertController(title: "M3", message: "Old and new password are same", preferredStyle: .alert)
+             let alertController = UIAlertController(title: "M3", message: "Short passwords are easy to guess!\nTry one with atleast 6 characters", preferredStyle: .alert)
+             let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
+                 print("You've pressed default");
+             }
+             alertController.addAction(action1)
+             self.present(alertController, animated: true, completion: nil)
+         }
+        else if(confirmPassword!.isEmpty)
+          {
+              let alertController = UIAlertController(title: "M3", message: "Confirm Password cannot be empty", preferredStyle: .alert)
+              let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
+                  print("You've pressed default");
+              }
+              alertController.addAction(action1)
+              self.present(alertController, animated: true, completion: nil)
+          }
+        else if(confirmPassword!.count < 6)
+          {
+              let alertController = UIAlertController(title: "M3", message: "Short passwords are easy to guess!\nTry one with atleast 6 characters", preferredStyle: .alert)
+              let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
+                  print("You've pressed default");
+              }
+              alertController.addAction(action1)
+              self.present(alertController, animated: true, completion: nil)
+          }
+        else if confirmPassword != password
+        {
+            let alertController = UIAlertController(title: "M3", message: "Password mismatch", preferredStyle: .alert)
+            let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
+                print("You've pressed default");
+            }
+            alertController.addAction(action1)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else if networkConnectionFrom == "No Connection"
+        {
+            let alertController = UIAlertController(title: "M3", message: "Device is offline. Please check the network connection and try again.", preferredStyle: .alert)
             let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
                 print("You've pressed default");
             }
@@ -154,39 +191,56 @@ class ForgotPassword: UIViewController,UITextFieldDelegate
     }
     
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var contentView: UIView!
-    
     @IBOutlet weak var constraintContentHeight: NSLayoutConstraint!
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-        
         self.title = "Change Password"
-
         NavigationBarTitleColor.navbar_TitleColor
-        
         oldPassword.delegate = self
-    
         newPassword.delegate = self
-
         submitOutlet.layer.cornerRadius = 4
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        
         view.addGestureRecognizer(tap)
-        
         navigationLeftButton ()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.reachabilityChanged),
+                                               name: ReachabilityChangedNotification,
+                                               object: reachability)
+        do{
+            try reachability!.startNotifier()
+        } catch {
+            debugPrint("Could not start reachability notifier")
+        }
+    }
+    
+    @objc func reachabilityChanged(note: Notification)
+    {
+          let reachability = note.object as! Reachability
+          switch reachability.currentReachabilityStatus {
+          case .notReachable:
+          print("Network became unreachable")
+          networkConnectionFrom = "No Connection"
+          case .reachableViaWiFi:
+          print("Network reachable through WiFi")
+          networkConnectionFrom = "WiFi"
+          case .reachableViaWWAN:
+          print("Network reachable through Cellular Data")
+          networkConnectionFrom = "MobileData"
+      }
     }
     
     func navigationLeftButton ()
     {
         let str = UserDefaults.standard.string(forKey: "fromDashboard")
-        
         if str == "YES"
         {
             let navigationLeftButton = UIButton(type: .custom)
@@ -210,7 +264,6 @@ class ForgotPassword: UIViewController,UITextFieldDelegate
     @objc func menuButtonclick()
     {
         let str = UserDefaults.standard.string(forKey: "fromDashboard")
-        
         if str == "YES"
         {
             self.performSegue(withIdentifier: "to_Dashboard", sender: self)
@@ -229,7 +282,6 @@ class ForgotPassword: UIViewController,UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
-        
         return true
     }
     
@@ -241,6 +293,10 @@ class ForgotPassword: UIViewController,UITextFieldDelegate
     func textFieldDidEndEditing(_ textField: UITextField)
     {
         if textField == oldPassword
+        {
+            confirmPassword.becomeFirstResponder()
+        }
+        else if textField == confirmPassword
         {
             newPassword.becomeFirstResponder()
         }

@@ -14,13 +14,13 @@ class TaskTableViewCell: UITableViewCell {
     
     @IBOutlet var tasktitle: UILabel!
     
-    @IBOutlet var taskDetails: UITextView!
-    
-    @IBOutlet var deleteOutlet: UIButton!
-    
     @IBOutlet var dateLabel: UILabel!
     
-    @IBOutlet var assignedLabel: UILabel!
+    @IBOutlet var assignedToLabel: UILabel!
+    
+    @IBOutlet weak var assignedByLabel: UILabel!
+    
+    @IBOutlet weak var status: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

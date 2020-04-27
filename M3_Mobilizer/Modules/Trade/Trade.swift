@@ -42,6 +42,7 @@ class Trade: UIViewController,UITableViewDelegate,UITableViewDataSource
             navigationLeftButton ()
         }
         
+        self.tableView.backgroundColor = UIColor.white
 
     }
     
@@ -152,6 +153,10 @@ class Trade: UIViewController,UITableViewDelegate,UITableViewDataSource
         let cell = self.tableView .dequeueReusableCell(withIdentifier: "cell") as! TradeTableViewCell
         
         cell.trade.text = tradename[indexPath.row]
+        
+        cell.cellView.layer.cornerRadius = 4.0
+        cell.cellView.layer.borderWidth = 1.0
+        cell.cellView.layer.borderColor = UIColor.gray.cgColor
 
         return cell
     }
@@ -179,10 +184,10 @@ class Trade: UIViewController,UITableViewDelegate,UITableViewDataSource
                     let status = JSON?["status"] as? String
                     if (status == "success")
                     {
-                        var tradeList = JSON?["Trades"] as? [Any]
+                        let tradeList = JSON?["Trades"] as? [Any]
                         for i in 0..<(tradeList?.count ?? 0)
                         {
-                            var dict = tradeList?[i] as? [AnyHashable : Any]
+                            let dict = tradeList?[i] as? [AnyHashable : Any]
                             let trade_name = dict?["trade_name"] as? String
                             let trade_id = dict?["status"] as? String
                             

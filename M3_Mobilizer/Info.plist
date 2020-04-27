@@ -4,10 +4,12 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>M3</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.happysanz.Mobilizer</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -15,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -36,15 +38,15 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Profile Picker  requires access to your phone’s camera.</string>
+	<string>App would like to access your photo gallery for your profile photo upload. Your photos wont be shared without your permission.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Description</string>
+	<string>M3 would like to use your current location to display it on the app, also for directions and estimation of your travel times. It is secure and private.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Will you allow this app to always know your location?</string>
+	<string>M3 would like to use your current location to display it on the app, also for directions and estimation of your travel times. It is secure and private.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Do you allow this app to know your current location?</string>
+	<string>M3 would like to use your current location to display it on the app, also for directions and estimation of your travel times. It is secure and private.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need to import photos of people</string>
+	<string>App would like to access your photo gallery for your profile photo upload. Your photos wont be shared without your permission.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

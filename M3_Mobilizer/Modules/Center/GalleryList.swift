@@ -83,10 +83,10 @@ class GalleryList: UIViewController,UITableViewDelegate,UITableViewDataSource
                     let status = JSON?["status"] as? String
                     if (status == "Sucess")
                     {
-                        var centerGallery = JSON?["Photo"] as? [Any]
+                        let centerGallery = JSON?["Photo"] as? [Any]
                         for i in 0..<(centerGallery?.count ?? 0)
                         {
-                            var dict = centerGallery?[i] as? [AnyHashable : Any]
+                            let dict = centerGallery?[i] as? [AnyHashable : Any]
                             let center_photo = dict?["center_photos"] as? String
                             
                             self.centerPhoto.append(center_photo ?? "")

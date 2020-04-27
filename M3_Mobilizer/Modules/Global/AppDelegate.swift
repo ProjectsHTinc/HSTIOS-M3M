@@ -8,18 +8,35 @@
 
 import UIKit
 import UserNotifications
+import SideMenu
 
 @UIApplicationMain
 
 
-class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate
+{
     var window: UIWindow?
-
+    var navigationController : UINavigationController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let userId = UserDefaults.standard.object(forKey: "user_id") as? String
+          
+         if (userId != nil) && (userId != "")
+          {
+            //dashboardView
+            UserDefaults.standard.set("NO", forKey: "FstLoginKey")
+            SideMenuManager.default.menuAddPanGestureToPresent(toView: UIView())
+            SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: UIView())
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let storyboard = UIStoryboard(name: "M3_Dashboard", bundle: nil)
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "dashboard")
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+          }
         registerForPushNotifications()
+        ReachabilityManager.shared.startMonitoring()
         return true
     }
     
@@ -55,11 +72,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func applicationWillEnterForeground(_ application: UIApplication)
     {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        ReachabilityManager.shared.stopMonitoring()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication)
     {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        ReachabilityManager.shared.startMonitoring()
     }
 
     func applicationWillTerminate(_ application: UIApplication)
@@ -80,6 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     }
     
 }
+
 extension UIApplication {
     var statusBarView: UIView? {
         if responds(to: Selector(("statusBar"))) {
@@ -88,6 +108,3 @@ extension UIApplication {
         return nil
     }
 }
-
-
-

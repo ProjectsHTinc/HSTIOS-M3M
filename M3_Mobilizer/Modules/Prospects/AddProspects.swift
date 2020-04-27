@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import ReachabilitySwift
+
 
 class AddProspects: UIViewController {
+    
+    let reachability = Reachability()
+    var networkConnectionFrom = String()
 
     @IBOutlet weak var adharOulet: UIButton!
     
@@ -16,8 +21,20 @@ class AddProspects: UIViewController {
     
     @IBAction func adharButton(_ sender: Any)
     {
-        UserDefaults.standard.set("fromadharView", forKey: "View") //setObject
-        self.performSegue(withIdentifier: "qrScanner", sender: self)
+        if networkConnectionFrom == ""
+        {
+            let alertController = UIAlertController(title: "M3", message: "Device is offline. Please check the network connection and try again.", preferredStyle: .alert)
+            let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
+                print("You've pressed default");
+            }
+            alertController.addAction(action1)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else
+        {
+            UserDefaults.standard.set("fromadharView", forKey: "View") //setObject
+            self.performSegue(withIdentifier: "qrScanner", sender: self)
+        }
     }
     
     @IBAction func candidateButton(_ sender: Any)
@@ -37,7 +54,7 @@ class AddProspects: UIViewController {
     
     @IBAction func backButton(_ sender: Any)
     {
-        self.dismiss(animated: true, completion: nil)
+       self.performSegue(withIdentifier: "to_Dashboard", sender: self)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +67,43 @@ class AddProspects: UIViewController {
         
         self.title = "Add Candidate"
         
+        self.view.backgroundColor = UIColor.white
       //  navigationLetfButton ()
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        // Show the Navigation Bar
+        //self.navigationController?.setNavigationBarHidden(true, animated: true)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.reachabilityChanged),
+                                               name: ReachabilityChangedNotification,
+                                               object: reachability)
+        do{
+            try reachability!.startNotifier()
+        } catch {
+            debugPrint("Could not start reachability notifier")
+        }
+    }
+    
+    @objc func reachabilityChanged(note: Notification)
+    {
+          let reachability = note.object as! Reachability
+          switch reachability.currentReachabilityStatus {
+          case .notReachable:
+          print("Network became unreachable")
+          networkConnectionFrom = "No Connection"
+          case .reachableViaWiFi:
+          print("Network reachable through WiFi")
+          networkConnectionFrom = "WiFi"
+          case .reachableViaWWAN:
+          print("Network reachable through Cellular Data")
+          networkConnectionFrom = "MobileData"
+      }
+    }
+    
+    
     
 //    func navigationLetfButton ()
 //    {

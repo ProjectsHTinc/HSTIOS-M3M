@@ -82,6 +82,20 @@ class GlobalVariables: NSObject
     static var updated_by: String?
     static var pincode: String?
     
+    static var degree: String?
+    static var yearOfEducation: String?
+    static var yearofPassing: String?
+    static var identificationMarksOne: String?
+    static var identificationMarksTwo: String?
+    static var headOfFamily: String?
+    static var highestEducation: String?
+    static var fatherMobile: String?
+    static var motherMobile: String?
+    static var yearlyIncome: String?
+    static var languagesKnown: String?
+    static var numberOfMembers: String?
+    static var jobCard: String?
+
     /* user details */
     static var role: String?
     static var usersname: String?

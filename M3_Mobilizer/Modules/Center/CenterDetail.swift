@@ -61,26 +61,21 @@ class CenterDetail: UIViewController,UICollectionViewDelegate,UICollectionViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-        
         self.title = "Center Detail"
-        
         let str = UserDefaults.standard.string(forKey: "fromDashboard")
-        
         if str != "YES"
         {
             setupSideMenu()
         }
-
+        self.centerDetailText.backgroundColor =  UIColor.clear
+        self.storiesTexview.backgroundColor =  UIColor.clear
         navigationLeftButton ()
-
     }
     
     func navigationLeftButton ()
     {
         let str = UserDefaults.standard.string(forKey: "fromDashboard")
-        
         if str == "YES"
         {
             let navigationLeftButton = UIButton(type: .custom)
@@ -104,7 +99,6 @@ class CenterDetail: UIViewController,UICollectionViewDelegate,UICollectionViewDa
     @objc func menuButtonclick()
     {
         let str = UserDefaults.standard.string(forKey: "fromDashboard")
-        
         if str == "YES"
         {
             self.performSegue(withIdentifier: "to_Dashboard", sender: self)
@@ -129,7 +123,6 @@ class CenterDetail: UIViewController,UICollectionViewDelegate,UICollectionViewDa
         // Note that these continue to work on the Navigation Controller independent of the View Controller it displays!
         SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
         SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
-        
     }
     
     func webRequest ()
@@ -157,18 +150,18 @@ class CenterDetail: UIViewController,UICollectionViewDelegate,UICollectionViewDa
                         self.centerDetailText.text = centerData?["center_info"] as? String
                         self.canterName.text = centerData?["center_name"] as? String
                         
-                        var trainer = JSON?["trainer"] as? [Any]
+                        let trainer = JSON?["trainer"] as? [Any]
                         for i in 0..<(trainer?.count ?? 0)
                         {
-                            var dict = trainer?[i] as? [AnyHashable : Any]
+                            let dict = trainer?[i] as? [AnyHashable : Any]
                             let trainerName = dict?["name"] as? String
                             self.name.add(trainerName!)
                         }
                         
-                        var trade = JSON?["trade"] as? [Any]
+                        let trade = JSON?["trade"] as? [Any]
                         for i in 0..<(trade?.count ?? 0)
                         {
-                            var dict = trade?[i] as? [AnyHashable : Any]
+                            let dict = trade?[i] as? [AnyHashable : Any]
                             let trade_name = dict?["trade_name"] as? String
                             self.tradeArr.add(trade_name!)
                         }
@@ -198,9 +191,7 @@ class CenterDetail: UIViewController,UICollectionViewDelegate,UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! TrainerCollectionViewCell
-        
         cell.nameLabel.text = (name[indexPath.row] as! String)
-        
         return cell
     }
     
@@ -214,7 +205,6 @@ class CenterDetail: UIViewController,UICollectionViewDelegate,UICollectionViewDa
         return 20
     }
 
-
     /*
     // MARK: - Navigation
 
@@ -224,5 +214,4 @@ class CenterDetail: UIViewController,UICollectionViewDelegate,UICollectionViewDa
         // Pass the selected object to the new view controller.
     }
     */
-
 }

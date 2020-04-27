@@ -20,13 +20,12 @@ class VideoList: UIViewController,YouTubePlayerDelegate,UITableViewDataSource,UI
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-       // navigationRightButton ()
-        
-        self.title = "Video"
-        
-        webRequest ()
+         // Do any additional setup after loading the view.
+         // navigationRightButton ()
+         self.title = "Video"
+         webRequest ()
     }
+    
     func navigationRightButton ()
     {
         let navigationRightButton = UIButton(type: .custom)
@@ -36,11 +35,12 @@ class VideoList: UIViewController,YouTubePlayerDelegate,UITableViewDataSource,UI
         let navigationButton = UIBarButtonItem(customView: navigationRightButton)
         self.navigationItem.setRightBarButtonItems([navigationButton], animated: true)
     }
+    
     @objc func clickButton()
     {
         self.performSegue(withIdentifier: "addvideo", sender: self)
-
     }
+    
     func webRequest ()
     {
         let functionName = "apimobilizer/view_centervideos/"
@@ -59,10 +59,10 @@ class VideoList: UIViewController,YouTubePlayerDelegate,UITableViewDataSource,UI
                     let status = JSON?["status"] as? String
                     if (status == "Sucess")
                     {
-                        var centerVideos = JSON?["Videos"] as? [Any]
+                        let centerVideos = JSON?["Videos"] as? [Any]
                         for i in 0..<(centerVideos?.count ?? 0)
                         {
-                            var dict = centerVideos?[i] as? [AnyHashable : Any]
+                            let dict = centerVideos?[i] as? [AnyHashable : Any]
                             let video_title = dict?["video_title"] as? String
                             let video_url = dict?["video_url"] as? String
 
@@ -111,7 +111,7 @@ class VideoList: UIViewController,YouTubePlayerDelegate,UITableViewDataSource,UI
     {
         return 263
     }
-//
+
     func playerReady(_ videoPlayer: YouTubePlayerView)
     {
         
@@ -123,12 +123,11 @@ class VideoList: UIViewController,YouTubePlayerDelegate,UITableViewDataSource,UI
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+      // MARK: - Navigation
+      // In a storyboard-based application, you will often want to do a little preparation before navigation
+      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+      // Get the new view controller using segue.destination.
+      // Pass the selected object to the new view controller.
     }
     */
 }

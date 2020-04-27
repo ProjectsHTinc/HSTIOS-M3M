@@ -12,23 +12,18 @@ import Alamofire
 class AddTask: UIViewController,UITextFieldDelegate,UITextViewDelegate {
 
     var name : NSMutableArray = NSMutableArray()
-    
     var user_id : NSMutableArray = NSMutableArray()
-    
     var picker = UIPickerView()
-    
     var datePicker = UIDatePicker()
+    var task_id =  String()
+    var attandenceID = String()
+
     
     @IBOutlet var scrollView: UIScrollView!
-    
     @IBOutlet var tasktitle: UITextField!
-    
     @IBOutlet var taskdate: UITextField!
-    
     @IBOutlet var taskDetails: UITextView!
-    
     @IBOutlet var saveOutlet: UIButton!
-    
     @IBAction func saveButton(_ sender: Any)
     {
         addVaues ()
@@ -38,33 +33,23 @@ class AddTask: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        print(task_id,attandenceID)
+        self.title = "Work Comment"
         NavigationBarTitleColor.navbar_TitleColor
-
-        self.title = "Add Task"
-        
-        tasktitle.delegate = self
-        
-        taskdate.delegate = self
-
+//        tasktitle.delegate = self
+//        taskdate.delegate = self
         taskDetails.delegate = self
-
-        
         saveOutlet.layer.cornerRadius = 4
-        
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        
         view.addGestureRecognizer(tap)
-        
-       // webRequest ()
-        
+        // webRequest ()
         let str = UserDefaults.standard.string(forKey: "Task_View")
-        
         if str == "fromList"
         {
           //  ViewDetails ()
         }
+        
+        self.taskDetails.backgroundColor =  UIColor.clear
     }
     
     @objc func dismissKeyboard()
@@ -186,25 +171,25 @@ class AddTask: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     
     func addVaues ()
     {
-        if self.tasktitle.text == ""
-        {
-            let alertController = UIAlertController(title: "M3", message: "", preferredStyle: .alert)
-            let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
-                print("You've pressed default");
-            }
-            alertController.addAction(action1)
-            self.present(alertController, animated: true, completion: nil)
-        }
-        else if self.taskdate.text == ""
-        {
-            let alertController = UIAlertController(title: "M3", message: "", preferredStyle: .alert)
-            let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
-                print("You've pressed default");
-            }
-            alertController.addAction(action1)
-            self.present(alertController, animated: true, completion: nil)
-        }
-        else if self.taskDetails.text == ""
+//        if self.tasktitle.text == ""
+//        {
+//            let alertController = UIAlertController(title: "M3", message: "", preferredStyle: .alert)
+//            let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
+//                print("You've pressed default");
+//            }
+//            alertController.addAction(action1)
+//            self.present(alertController, animated: true, completion: nil)
+//        }
+//        else if self.taskdate.text == ""
+//        {
+//            let alertController = UIAlertController(title: "M3", message: "", preferredStyle: .alert)
+//            let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
+//                print("You've pressed default");
+//            }
+//            alertController.addAction(action1)
+//            self.present(alertController, animated: true, completion: nil)
+//        }
+        if self.taskDetails.text == ""
         {
             let alertController = UIAlertController(title: "M3", message: "", preferredStyle: .alert)
             let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
@@ -215,11 +200,11 @@ class AddTask: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         }
         else
         {
-           // ActivityIndicator().showActivityIndicator(uiView: self.view)
-            let functionName = "apimobilizer/add_task/"
+            // ActivityIndicator().showActivityIndicator(uiView: self.view)
+            let functionName = "apimobilizer/update_attendance_mobilizer_comment/"
             let baseUrl = Baseurl.baseUrl + functionName
             let url = URL(string: baseUrl)!
-            let parameters: Parameters = ["user_id": GlobalVariables.user_id!, "task_title": self.tasktitle.text as Any, "task_description": self.taskDetails.text as Any, "task_date": self.taskdate.text as Any,"pia_id":GlobalVariables.pia_id!, "status": "Active"]
+            let parameters: Parameters = ["user_id": GlobalVariables.user_id!, "attendance_id": self.attandenceID, "mobilizer_comments": self.taskDetails.text as Any,]
             
             Alamofire.request(url, method: .post, parameters: parameters,encoding: JSONEncoding.default, headers: nil).responseJSON
                 {
@@ -233,15 +218,11 @@ class AddTask: UIViewController,UITextFieldDelegate,UITextViewDelegate {
                         let status = JSON?["status"] as? String
                         if (status == "success")
                         {
-                          //  ActivityIndicator().hideActivityIndicator(uiView: self.view)
+                            // ActivityIndicator().hideActivityIndicator(uiView: self.view)
                             let alertController = UIAlertController(title: "M3", message: msg, preferredStyle: .alert)
                             let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
                                 print("You've pressed default");
-                                
-                                self.tasktitle.text = ""
-                                self.taskdate.text = ""
-                                self.taskDetails.text = ""
-                                self.performSegue(withIdentifier: "to_Task", sender: self)
+                                self.performSegue(withIdentifier: "viewtask", sender: self)
                             }
                             alertController.addAction(action1)
                             self.present(alertController, animated: true, completion: nil)
@@ -263,6 +244,7 @@ class AddTask: UIViewController,UITextFieldDelegate,UITextViewDelegate {
             }
         }
     }
+     
     /*
     // MARK: - Navigation
 
