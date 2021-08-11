@@ -27,7 +27,6 @@ class QRScanner: UIViewController,AVCaptureMetadataOutputObjectsDelegate,XMLPars
         
         // Get the back-facing camera for capturing videos
         self.title = "Scanner"
-
        
         view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()
@@ -86,7 +85,6 @@ class QRScanner: UIViewController,AVCaptureMetadataOutputObjectsDelegate,XMLPars
         
         metadataOutput.rectOfInterest = previewLayer!.metadataOutputRectConverted(fromLayerRect: barcodeArea)
 
-    
     }
     
     func navigationLetfButton ()

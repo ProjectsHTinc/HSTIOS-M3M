@@ -27,6 +27,7 @@ class Dashboard: UIViewController,CLLocationManagerDelegate
     @IBOutlet weak var tradeLabel: UILabel!
     @IBOutlet weak var taskLabel: UILabel!
     @IBOutlet weak var bell_Image: UIBarButtonItem!
+    
     let locationManager = CLLocationManager()
     var livelocTimer: Timer!
     var userLive_Latitude : Double?

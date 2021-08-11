@@ -287,7 +287,7 @@ class Login: UIViewController,UITextFieldDelegate,CLLocationManagerDelegate
 
                             
                             let staffProfile = json["staffProfile"].dictionary
-                            print(staffProfile!)
+//                            print(staffProfile!)
                             let nationality = json["staffProfile"]["nationality"].string
                             let sex = json["staffProfile"]["sex"].string
                             let staffName = json["staffProfile"]["name"].string
